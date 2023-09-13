@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { MdDownloadForOffline } from "react-icons/md";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { Link, useParams } from "react-router-dom";
@@ -16,7 +16,7 @@ const PinDetail = ({ user }) => {
   const [addingComment, setAddingComment] = useState(false);
   const { pinId } = useParams();
 
-  const fetchPinDetails = () => {
+  const fetchPinDetails = useCallback(() => {
     let query = pinDetailQuery(pinId);
 
     if (query) {
@@ -30,11 +30,11 @@ const PinDetail = ({ user }) => {
         }
       });
     }
-  };
+  }, [pinId]);
 
   useEffect(() => {
     fetchPinDetails();
-  }, [pinId]);
+  }, [fetchPinDetails, pinId]);
 
   const addComment = () => {
     if (comment) {

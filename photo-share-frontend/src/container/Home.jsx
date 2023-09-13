@@ -20,11 +20,10 @@ const Home = () => {
   useEffect(() => {
     const query = userQuery(userInfo?.sub);
 
-    client.fetch(query)
-      .then((data) => {
-        setUser(data[0]);
-      })
-  }, []);
+    client.fetch(query).then((data) => {
+      setUser(data[0]);
+    });
+  }, [userInfo?.sub]);
 
   useEffect(() => {
     // scroll to the top of the page
