@@ -10,7 +10,7 @@ export default defineConfig({
   name: 'default',
   title: 'violet-duck',
 
-  projectId: 'mq9zr6ma',
+  projectId: 'projectId',
   dataset: 'production',
 
   plugins: [deskTool(), visionTool(), ...(isDev ? devOnlyPlugins : [])],
