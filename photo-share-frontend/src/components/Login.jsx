@@ -1,30 +1,30 @@
 import React from "react";
 import { GoogleLogin } from "@react-oauth/google";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import shareVideo from "../assets/share.mp4";
 import logo from "../assets/logo-white.png";
-// import { client } from "../client";
+import { client } from "../client";
 import jwt_decode from "jwt-decode";
 
 const Login = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const responseGoogle = (response) => {
     const userResponse = jwt_decode(response.credential);
 
     localStorage.setItem("user", JSON.stringify(userResponse));
-    // const { name, sub, picture } = userResponse;
+    const { name, sub, picture } = userResponse;
 
-    // const doc = {
-    //   _id: sub,
-    //   _type: "user",
-    //   userName: name,
-    //   image: picture,
-    // };
+    const doc = {
+      _id: sub,
+      _type: "user",
+      userName: name,
+      image: picture,
+    };
 
-    // client.createIfNotExists(doc).then(() => {
-    //   navigate("/", { replace: true });
-    // });
+    client.createIfNotExists(doc).then(() => {
+      navigate("/", { replace: true });
+    });
   };
 
   return (
